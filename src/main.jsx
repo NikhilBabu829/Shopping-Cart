@@ -1,13 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
-import Home from './Pages/Home.jsx'
-import Shop from './Pages/Shop.jsx'
-import Cart from './Pages/Cart.jsx'
-import { createTheme } from '@mui/material'
-import { ThemeProvider } from '@emotion/react'
-import AboutProduct from './Pages/AboutProduct.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './Pages/Home.jsx';
+import Shop from './Pages/Shop.jsx';
+import Cart from './Pages/Cart.jsx';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+import AboutProduct from './Pages/AboutProduct.jsx';
+import Context  from './Context/ContextProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,8 @@ const darkTheme = createTheme({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={darkTheme}>
-    <RouterProvider router={router}/>
+    <Context>
+      <RouterProvider router={router}/>
+    </Context>
   </ThemeProvider>
 )
