@@ -14,8 +14,14 @@ export default function Context({children}){
         })
     }
 
+    function removeItemsIntoCart(data){
+        setItemsInCart((prevData)=>{
+            return (data)
+        })
+    }
+
     return (
-        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart}}>
+        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart, removeItemsIntoCart}}>
             {children}
         </ContextProvider.Provider>
     )
