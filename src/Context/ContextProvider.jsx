@@ -4,6 +4,7 @@ export const ContextProvider = createContext();
 
 export default function Context({children}){
     const [itemsInCart, setItemsInCart] = useState([])
+    const [totalCost, setTotalCost] = useState(0);
 
     function addItemsIntoCart(data){
         setItemsInCart((prevData)=>{
@@ -12,16 +13,22 @@ export default function Context({children}){
                 data
             ])
         })
+        setTotalCost((prevData)=>{
+            return (prevData + data.price)
+        })
     }
 
-    function removeItemsIntoCart(data){
+    function removeItemsIntoCart(data, prevItems){
         setItemsInCart((prevData)=>{
             return (data)
+        })
+        setTotalCost((prevData)=>{
+            return (prevData - prevItems.price)
         })
     }
 
     return (
-        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart, removeItemsIntoCart}}>
+        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart, removeItemsIntoCart, totalCost}}>
             {children}
         </ContextProvider.Provider>
     )

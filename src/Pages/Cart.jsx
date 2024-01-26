@@ -8,17 +8,12 @@ import { CardMedia, Card, Button } from "@mui/material";
 import Divider from '@mui/material/Divider';
 
 export default function Cart(){
-    const {removeItemsIntoCart, itemsInCart} = useContext(ContextProvider)
-    const [totalAmount, setTotalAmount] = useState(0);
+    const {removeItemsIntoCart, itemsInCart, totalCost} = useContext(ContextProvider)
 
     function handleRemoveEvent(data){
         const {id} = data;
         const newCartItems = itemsInCart.filter((item) => item.id !== id)
-        removeItemsIntoCart(newCartItems);
-    }
-
-    function getTotalAmount(){
-        
+        removeItemsIntoCart(newCartItems, data);
     }
 
     return (
@@ -55,12 +50,12 @@ export default function Cart(){
                         })
                     }
                   </Grid>
-                  <Grid item lg={7}>
-                    {
-                        itemsInCart.map((item)=>{
-                            <Typography variant="h5" color="palette.text.primary"></Typography>
-                        })
-                    }
+                  <Grid item lg={7} sx={{textAlign : "end"}}>
+                    <Typography variant="h5" color="palette.text.primary">Total</Typography>
+                    <Typography variant="h6" color="palette.text.secondary">{totalCost} $</Typography>
+                    <Button variant="outlined" color="success">
+                      Buy Now
+                    </Button>
                   </Grid>
                 </Grid>
             </Container>
