@@ -4,16 +4,34 @@ import {ContextProvider} from '../Context/ContextProvider';
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { CardMedia, Card, Button } from "@mui/material";
+import { CardMedia, Card, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, IconButton } from "@mui/material";
 import Divider from '@mui/material/Divider';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
 export default function Cart(){
-    const {removeItemsIntoCart, itemsInCart, totalCost} = useContext(ContextProvider)
+
+    const [open, setOpen] = useState(false)
+
+    const {removeItemsIntoCart, itemsInCart, totalCost, setItemsInCart, setTotalCost } = useContext(ContextProvider)
 
     function handleRemoveEvent(data){
         const {id} = data;
         const newCartItems = itemsInCart.filter((item) => item.id !== id)
         removeItemsIntoCart(newCartItems, data);
+    }
+
+    function handleBuy(){
+        setOpen(true)
+        setItemsInCart([]);
+        setTotalCost(0);
+        setTimeout(()=>{
+          setOpen(false);
+        },10000)
+        
+    }
+
+    function closeBuy(){
+        setOpen(false)
     }
 
     return (
@@ -53,9 +71,34 @@ export default function Cart(){
                   <Grid item lg={7} sx={{textAlign : "end"}}>
                     <Typography variant="h5" color="palette.text.primary">Total</Typography>
                     <Typography variant="h6" color="palette.text.secondary">{totalCost} $</Typography>
-                    <Button variant="outlined" color="success">
+                    <Button variant="outlined" color="success" onClick={handleBuy}>
                       Buy Now
                     </Button>
+                    <Dialog open={open} onClose={closeBuy}>
+                      <DialogTitle sx={{textAlign : "center"}}>
+                        We Received Your Order
+                        <IconButton>
+                          <CheckCircleOutlineOutlinedIcon color="success" fontSize="large"/>
+                        </IconButton>
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText sx={{textAlign : "center"}}>
+                          Thank you for shopping with us!
+                        </DialogContentText>
+                        <DialogContentText>
+                          This Alert Will Disapper in 10 Seconds
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button
+                          color= "error"
+                          variant="outlined"
+                          onClick={closeBuy}
+                        >
+                          Close Now
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </Grid>
                 </Grid>
             </Container>

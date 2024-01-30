@@ -35,6 +35,16 @@ const darkTheme = createTheme({
   },
 });
 
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState == "hidden"){
+    document.title = `We Miss You ${document.querySelector('.title').innerHTML = String.fromCodePoint('0x1F62D')}`
+    
+  }
+  else{
+    document.title = "My Shop"
+  }
+})
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={darkTheme}>
     <Context>

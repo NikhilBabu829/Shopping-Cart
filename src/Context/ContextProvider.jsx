@@ -28,7 +28,7 @@ export default function Context({children}){
     }
 
     return (
-        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart, removeItemsIntoCart, totalCost}}>
+        <ContextProvider.Provider value = {{itemsInCart, addItemsIntoCart, removeItemsIntoCart, totalCost, setItemsInCart, setTotalCost}}>
             {children}
         </ContextProvider.Provider>
     )
