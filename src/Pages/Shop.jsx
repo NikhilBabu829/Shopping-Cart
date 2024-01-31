@@ -60,12 +60,12 @@ export default function Shop(){
                         <>
                         <NavBar />
                         <Container maxWidth="lg">
-                            <Box sx={{marginTop : "1%"}}>
-                                <Grid container spacing={4}>
+                            <Box sx={{marginTop : {xs : "5%", md : "2%"}, marginBottom : {xs : "5%", md : "2%"}}}>
+                                <Grid container spacing={4} sx={{ display : {xs : "flex"}, justifyContent : {xs : "center", lg : "start", xl : "start", md : "start"} }}> {/*sx={{display : {xs : 'flex'}, alignItems: {xs :"center"}, justifyContent : {xs :'center'}}} */}
                                     {
                                         APIData[0].map((data)=>{
                                             return (
-                                                <Grid item xs={3}>
+                                                <Grid item sm={6} xs={10} lg={3} md={4}>
                                                     <Card>
                                                         <CardActionArea onClick={()=>{routeChangeClick(data)}}>    
                                                             <Link to='/shop/about_product' style={{textDecoration : 0}}>

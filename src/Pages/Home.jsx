@@ -18,6 +18,7 @@ export default function Home(){
 
     const [APIData, setAPIData] = useState([])
     const [loading, isLoading] = useState(true)
+    const [numberOfSlides, setNumberOfSlides] = useState(0);
 
     async function getAPIData(){
         // fetch('https://fakestoreapi.com/products')
@@ -44,9 +45,23 @@ export default function Home(){
         })
         isLoading(false)
     }
+
+    
     
     useEffect(()=>{
         getAPIData()
+        if(window.innerWidth < 600){
+            setNumberOfSlides(1)
+        }
+        else if(window.innerWidth < 900 && window.innerWidth > 600){
+            setNumberOfSlides(2)
+        }
+        else if(window.innerHeight < 600){
+            setNumberOfSlides(1)
+        }
+        else{
+            setNumberOfSlides(3)
+        }
     },[])
 
     console.log(APIData)
@@ -69,7 +84,7 @@ export default function Home(){
                                 "--swiper-pagination-bullet-inactive-color": themeColors.palette.text.secondary,
                             }}
                             spaceBetween={30}
-                            slidesPerView={3}
+                            slidesPerView={numberOfSlides}
                             autoplay={{
                             delay: 2500,
                             disableOnInteraction: false,
