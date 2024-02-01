@@ -24,6 +24,8 @@ export default function Cart(){
       removeItemsIntoCart(itemsInCart, data);
   }
 
+  console.log(itemsInCart.length)
+
   function handleBuy(){
       setOpen(true)
       setItemsInCart([]);
@@ -76,7 +78,7 @@ export default function Cart(){
                       <Divider/>
                       <Typography variant="h5" color="palette.text.primary">Total Cost</Typography>
                       <Typography variant="h6" color="palette.text.secondary">{totalCost} $</Typography>
-                      <Button variant="contained" color="success" onClick={handleBuy} sx={{marginBottom:"20%"}}>
+                      <Button variant="contained" color="success" onClick={handleBuy} sx={{marginBottom:"20%"}} >
                           Order Now
                       </Button>
                       <Dialog open={open} onClose={closeBuy}>
@@ -126,7 +128,7 @@ export default function Cart(){
                                           <Typography variant="body1" color="palette.text.primary">{item.title}</Typography>
                                           <Typography variant="body2" color="palette.text.secondary">{item.price} $</Typography>
                                           <Button variant="text" color="error" onClick={()=>{handleRemoveEvent(item)}}>
-                                              remove
+                                            remove
                                           </Button>
                                       </Grid>
                                       </Grid>
@@ -138,9 +140,17 @@ export default function Cart(){
                       <Grid item lg={7} sx={{textAlign : "end"}}>
                         <Typography variant="h5" color="palette.text.primary">Total</Typography>
                         <Typography variant="h6" color="palette.text.secondary">{totalCost} $</Typography>
-                        <Button variant="outlined" color="success" onClick={handleBuy}>
-                          Order Now
-                        </Button>
+                        {
+                          itemsInCart.length > 0? (
+                            <Button variant="contained" color="success" onClick={handleBuy} sx={{marginBottom:"20%"}} >
+                              Order Now
+                            </Button>
+                          ) : (
+                            <Button variant="contained" color="success" disabled sx={{marginBottom:"20%"}} >
+                              Order Now
+                            </Button>
+                          )
+                        }
                         <Dialog open={open} onClose={closeBuy}>
                           <DialogTitle sx={{textAlign : "center"}}>
                             We Received Your Order
