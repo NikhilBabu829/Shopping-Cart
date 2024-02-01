@@ -24,8 +24,6 @@ export default function Cart(){
       removeItemsIntoCart(itemsInCart, data);
   }
 
-  console.log(itemsInCart.length)
-
   function handleBuy(){
       setOpen(true)
       setItemsInCart([]);

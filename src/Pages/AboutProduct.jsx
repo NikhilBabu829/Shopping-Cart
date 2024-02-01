@@ -19,8 +19,7 @@ import {ContextProvider} from '../Context/ContextProvider';
 export default function (){
 
   const themeColors = useTheme() 
-  console.log(themeColors);
-  
+
   const location = useLocation()
   const [open, setOpen] = useState(false)
 
@@ -101,7 +100,7 @@ export default function (){
                   </Box>
                   <Typography variant="h5" color={themeColors.palette.warning.main}>{location.state.title}</Typography>
                   <Typography variant="body2" color="palette.text.secondary">{location.state.description}</Typography>
-                  <Typography variant="body1" color="palette.text.primary">{location.state.price} <Typography variant="body1" sx={{display : "inline"}} color={themeColors.palette.warning.light}>$</Typography></Typography>
+                  <Typography variant="body1" color="palette.text.primary">{location.state.price} $</Typography>
                   <Button variant="contained" color="warning" sx={{marginTop:"1%"}} onClick={()=>{handleClickCart(location.state)}}>
                     Add to Cart
                   </Button>
@@ -121,7 +120,7 @@ export default function (){
                 <Grid item lg={7}>
                   <Typography variant="h1" color={themeColors.palette.warning.main}>{location.state.title}</Typography>
                   <Typography variant="h6" color="palette.text.secondary">{location.state.description}</Typography>
-                  <Typography variant="h5" color="palette.text.primary">{location.state.price} <Typography variant="h5" sx={{display : "inline"}} color={themeColors.palette.warning.light}>$</Typography></Typography>
+                  <Typography variant="h5" color="palette.text.primary">{location.state.price} <span>$</span></Typography>
                   <Button variant="contained" color="warning" sx={{marginTop : "1%"}} onClick={()=>{handleClickCart(location.state)}}>
                     Add to cart
                   </Button>
