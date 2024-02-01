@@ -19,8 +19,9 @@ export default function Cart(){
 
   function handleRemoveEvent(data){
       const {id} = data;
-      const newCartItems = itemsInCart.filter((item) => item.id !== id)
-      removeItemsIntoCart(newCartItems, data);
+      const index = itemsInCart.map(item => item.id).indexOf(id);
+      itemsInCart.splice(index, 1);
+      removeItemsIntoCart(itemsInCart, data);
   }
 
   function handleBuy(){
